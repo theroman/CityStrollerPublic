@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>City Stroller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <!--Import Leaflet-->
+    <script src="https://unpkg.com/leaflet@1.7/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+     <!--Import Mitt-->
+    <script src="https://unpkg.com/mitt/dist/mitt.umd.js"></script>
+    <!--Import Google Places API-->
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5uemzhNvm7rcOjlgNwJcJ1i0Qyjy_xMc&libraries=places">
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+      <leaflet-map
+      activeAttribute="selectedAttribute"
+      :saved-points="savedPoints"
+      >
+      </leaflet-map>
+      <action-button 
+      v-if="actionButtonShowed"
+      @hide-action-button="hideActionButton"
+      >
+      </action-button>
+      
+      <action-menu 
+      v-if="!actionButtonShowed"
+      @show-action-button="showActionButton"
+      :attributes="attributes"
+      >
+      </action-menu>
+      <marker-details
+      v-if="selectedMarker"
+      :marker="selectedMarker"
+      :default-place-images="defaultPlaceImages"
+      >
+      </marker-details>
+    
+    </div>
+
+    <!-- Import App -->
+    <script src="./main.js"></script>
+
+    <!-- Import Components -->
+    <script src="./components/LeafletMap.js"></script>
+    <script src="./components/ActionButtton.js"></script>
+    <script src="./components/ActionMenu.js"></script>
+    <script src="./components/AttributeIcon.js"></script>
+    <script src="./components/MarkerDetails.js"></script>
+    <script src="./components/DeleteButton.js"></script>
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
+  </body>
+</html>
